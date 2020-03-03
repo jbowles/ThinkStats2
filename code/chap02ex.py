@@ -14,6 +14,18 @@ import first
 import thinkstats2
 
 
+def find_mode(hist):
+    '''
+    hist is a histogram map of value:count pairs
+    {1:3,2:4,3:6}
+    '''
+    return max([(v, k) for k, v in hist.Items()])[0]
+
+
+def find_all_modes(hist):
+    return sorted(hist.Items, key=itemgetter(1), reverse=True)
+
+
 def Mode(hist):
     """Returns the value with the highest frequency.
 
@@ -42,7 +54,7 @@ def main(script):
     live, firsts, others = first.MakeFrames()
     hist = thinkstats2.Hist(live.prglngth)
 
-    # test Mode    
+    # test Mode
     mode = Mode(hist)
     print('Mode of preg length', mode)
     assert mode == 39, mode
